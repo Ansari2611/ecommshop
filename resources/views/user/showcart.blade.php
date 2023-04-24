@@ -7,6 +7,7 @@
       <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
 
    </head>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <!-- body -->
    <body class="main-layout">
 	<!-- header section start -->
@@ -57,7 +58,7 @@
                     
                 </td>
                     <td>
-                      <a class="btn btn-danger"href="{{route('deletecart', $item->id)}}" ><i class="fas fa-shopping-cart"></i> Remove</a>
+                      <a class="btn btn-danger"href="{{route('deletecart', $item->id)}}" onclick="confirmation(event)" ><i class="fas fa-shopping-cart"></i> Remove</a>
             
                     </td>
                   </tr>
@@ -149,6 +150,36 @@
             });
           });
         });
+
+
+        
+        function confirmation(ev)
+        {
+          ev.preventDefault();
+
+          var urltoRedirect=ev.currentTarget.getAttribute('href');
+          console.log(urltoRedirect)
+
+          swal({
+            title:"Are you Sure Want to Remove?",
+            text:"You Wont Be Able to Revert this Action",
+            icon:"warning",
+            buttons:true,
+            dangerMode:true,
+          })
+
+          .then((willCancel)=>{
+
+            if(willCancel){
+              window.location.href=urltoRedirect;
+            }
+
+          });
+
+        }
+
+
+      
         </script>
         
    </body>

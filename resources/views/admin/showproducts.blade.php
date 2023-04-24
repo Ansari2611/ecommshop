@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     @include('admin.css')
   </head>
   <body>
@@ -61,7 +63,7 @@
                     <td  style="padding:20px"><img  height="100px" width="100px" src="productimages/{{$product->image}}" alt=""> </td>
                     <td style="padding:20px">
                         <a href="{{route('editproducts',$product->id)}}" class="btn btn-success">Edit</a>
-                        <a href="{{route('deleteproducts',$product->id)}}" class="btn btn-danger">Delete</a>
+                        <a href="{{route('deleteproducts',$product->id)}}" class="btn btn-danger" onclick="confirmation(event)">Delete</a>
                     </td>
                     
                 </tr>
@@ -91,5 +93,34 @@
     <!-- plugins:js -->
    @include('admin.javascript')
     <!-- End custom js for this page -->
+
+    <script>
+      function confirmation(ev)
+      {
+        ev.preventDefault();
+
+        var urltoRedirect=ev.currentTarget.getAttribute('href');
+        console.log(urltoRedirect)
+
+        swal({
+          title:"Are you Sure Want to Delete?",
+          text:"You Wont Be Able to Revert this Action",
+          icon:"warning",
+          buttons:true,
+          dangerMode:true,
+        })
+
+        .then((willCancel)=>{
+
+          if(willCancel){
+            window.location.href=urltoRedirect;
+          }
+
+        });
+
+      }
+
+
+    </script>
   </body>
 </html>
