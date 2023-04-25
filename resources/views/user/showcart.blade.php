@@ -42,7 +42,7 @@
                     <td>{{ $item->productname }}</td>
                     <td>₹{{ $item->price }}</td>
                     <td><img src="productimages/{{$item->image}}" alt="{{ $item->productname }}" style="width:50px; height:50px;"></td>
-                    <td>
+                    
                       <td>
                         <form action="{{ route('updatecart', $item->id) }}" method="POST">
                             @csrf
@@ -54,7 +54,7 @@
                                 {{-- <button type="submit" class="btn btn-primary">Update</button> --}}
                             </div>
                       
-                    </td>
+                    
                     
                 </td>
                     <td>

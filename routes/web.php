@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function(){
     Route::post('contact',[UserController::class,'contactus'])->name('contact');
     Route::post('/showcart/totalprice', [UserController::class,'totalprice'])->name('showcart.totalprice');
     Route::get('wallet',[UserController::class,'showwallet'])->name('showwallet');
-    Route::post('wallet',[UserController::class,'addwallet'])->name('addwallet');
+    Route::post('addwallet',[UserController::class,'addwallet'])->name('addwallet');
     Route::get('myorders',[UserController::class,'myorders'])->name('myorders');
     Route::get('deleteorders/{id}',[UserController::class,'deleteorders'])->name('deleteorders');
 

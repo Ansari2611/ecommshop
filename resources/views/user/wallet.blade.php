@@ -110,6 +110,11 @@ span{
                     <i class='fas fa-wallet'></i>
                     My Wallet</a>
               </li>
+
+              <li class="nav-item active">
+                <a class="nav-link" href="{{route('myorders')}}" style="margin-top:10px">My Orders</a>
+              </li>
+
             @if (Route::has('login'))
                     
             @auth
@@ -147,8 +152,9 @@ span{
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Total  Amount  </span>
                     
-                    <strong>₹{{$amount}}
-                        </strong>
+                    <strong>₹{{ $showwallet ?? " "}}
+                    </strong>
+                        
                        
                 </li>
             </ul>

@@ -31,7 +31,7 @@
                         <li class="list-group-item d-flex justify-content-between">
                             <span>My Balance: </span>
                             
-                            <strong>₹{{$amount}}
+                            <strong>₹{{$showwallet}}
                                 </strong>
                                
                         </li>
