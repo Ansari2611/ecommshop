@@ -12,10 +12,13 @@
     @include('user.header')
 
 	<!-- header section end -->
+    
+    
 	
 	<!-- New Arrivals section start -->
 
     @include('user.content')
+    
    
    	<!-- New Arrivals section end -->
    	<!-- contact section start -->

@@ -168,16 +168,39 @@
                    
                     <div class="col-md-3 mb-3">
                         <label for="zip">Zip Code</label>
-                        <input type="text" class="form-control" id="zip" placeholder="" required="" name="zipcode">
+                        <input type="text" class="form-control" id="zip" placeholder="" required=""
+                            name="zipcode" onblur="getCityStateCountry(this.value)">
                         @error('zipcode')
                         <span class="alert-danger"> {{$message}} </span>
                         @enderror
                     </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="zip">City</label>
+                        <input type="text" class="form-control" id="city" placeholder="" required="" name="city"disabled>
+                        <input type="hidden" class="form-control" id="city" placeholder="" required="" name="city"disabled>
+                        
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="zip">State</label>
+                        <input type="text" class="form-control" id="state" placeholder="" required="" name="state"disabled>
+                        <input type="hidden" class="form-control" id="state" placeholder="" required="" name="state"disabled>
+                        
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="zip">Country</label>
+                        <input type="text" class="form-control" id="country" placeholder="" required="" name="country" disabled>
+                        <input type="hidden" class="form-control" id="country" placeholder="" required="" name="country" disabled>
+                     
+                    </div>
                 </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="cash-on-delivery" name="cash-on-delivery">
-                    <label class="form-check-label" for="cash-on-delivery">Cash on delivery</label>
-                  </div>
+               
+
+                  
+
+                
                 
                 
              
@@ -193,3 +216,17 @@
     </div>
     
 </div>
+{{-- zipcode ajax --}}
+<script>
+    function getCityStateCountry(zipcode) {
+        fetch(`https://api.postalpincode.in/pincode/${zipcode}`)
+            .then(response => response.json())
+            .then(data => {
+                const address = data[0].PostOffice[0];
+                document.getElementById('city').value = address.Block;
+                document.getElementById('state').value = address.State;
+                document.getElementById('country').value = 'India';
+            })
+            .catch(error => console.error(error));
+    }
+</script>

@@ -42,4 +42,7 @@ $('#myCarousel').carousel({
           $(this).off("touchmove");
       });
   });
+
+
+  
 </script> 

@@ -94,7 +94,7 @@
 
                               <div class="form-outline mb-4">
                                 <label class="form-label" for="form3Example4cdg">Change Image</label>
-                                <input type="file" id="form3Example4cdg" class="form-control form-control-lg" style="color:white;background-color:black" name="image" required/>
+                                <input type="file" id="form3Example4cdg" class="form-control form-control-lg" style="color:white;background-color:black" name="image"/>
                               </div>
               
                               

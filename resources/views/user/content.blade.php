@@ -2,6 +2,8 @@
     
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
+
 <div class="collection_section layout_padding">
     <div class="container">
         <h1 class="new_text"><strong>New Arrivals Products</strong></h1>
@@ -9,6 +11,8 @@
     </div>
 </div>
 <!-- New Arrivals Products -->
+
+
 
 
 <div class="layout_padding gallery_section">

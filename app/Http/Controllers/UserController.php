@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -72,6 +73,12 @@ class UserController extends Controller
 
     public function checkout()
     {
+        // $response = Http::get('https://maps.googleapis.com/maps/api/geocode/json?address=77379&sensor=true&key=YOUR_GOOGLE_PLATFORM...');
+    
+        // $jsonData = $response->json();
+          
+        // dd($jsonData);
+
         $user_id = Auth::id(); // get the authenticated user's id
         $cart = Cart::where('user_id', $user_id)->get(); // get the user's cart items
         $showwallet = Wallet::where('user_id', $user_id)->sum('amount');
@@ -86,9 +93,30 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email',
             'phone' => 'required|min:10',
-            'address' => 'required',
+            'address' => 'required', 
             'zipcode' => 'required',
         ]);
+
+
+        // Get the ZIP code from the form submission
+        $zipcode = $request->input('zipcode');
+
+        // Make an HTTP request to the Postal PIN Code API
+        $response = file_get_contents('https://api.postalpincode.in/pincode/' . $zipcode);
+
+        // Parse the JSON response into an associative array
+        $result = json_decode($response, true);
+
+        // Check if the request was successful
+        if ($result[0]['Status'] == 'Success') {
+            // Get the city, state, and country from the response
+            $city = $result[0]['PostOffice'][0]['District'];
+            $state = $result[0]['PostOffice'][0]['State'];
+            $country = $result[0]['PostOffice'][0]['Country'];
+
+            // Set the values in the request object for use in the view
+            $request->merge(compact('city', 'state', 'country'));
+        }
 
         // Calculate the total price of the order
         $totalPrice = 0;
@@ -123,6 +151,9 @@ class UserController extends Controller
         $order->phone = $validate['phone'];
         $order->address = $validate['address'];
         $order->zipcode = $validate['zipcode'];
+        $order->city=$request->city;
+        $order->state=$request->state;
+        $order->country=$request->country;
         $order->totalprice = $totalPrice;
         $order->cash_on_delivery = true;
         $order->save();
