@@ -48,7 +48,9 @@
                             @csrf
                             <div class="input-group mb-3" style="width: 130px">
                               <span class="input-group-text decrement-btn quantity-btn" data-product-id="{{ $item->id }}"  style="cursor: pointer">-</span>
-                                <input type="number" class="form-control bg-white text-center quantity-input" name="quantity" min="1" value="{{ $item->quantity }}" data-product-id="{{ $item->id }}">
+                                <input type="number" class="form-control bg-white text-center quantity-input" name="quantity" min="1" value="{{ $item->quantity }}" data-product-id="{{ $item->id }}" disabled>
+
+                                <input type="hidden" class="form-control bg-white text-center quantity-input" name="quantity" min="1" value="{{ $item->quantity }}" data-product-id="{{ $item->id }}">
 
                                 <span class="input-group-text increment-btn quantity-btn" data-product-id="{{ $item->id }}" style="cursor: pointer">+</span>
                                 {{-- <button type="submit" class="btn btn-primary">Update</button> --}}
@@ -107,7 +109,7 @@
 	<!-- section footer start -->
     @include('user.footer')
 	<!-- section footer end -->
-	<div class="copyright">2023 All Rights Reserved. <a href="https://html.design">SAHU ROSHAN</a></div>
+	<div class="copyright">2023 All Rights Reserved. <a href="https://html.design">Ansari Md Arman</a></div>
 
 
       <!-- Javascript files-->

@@ -16,7 +16,7 @@
                        
                        
                
-                       <a class="nav-item nav-link" href="{{route('contact')}}">Contact</a>
+                       {{-- <a class="nav-item nav-link" href="{{route('contact')}}">Contact</a> --}}
 
                        {{-- <a class="nav-item nav-link" href="{{route('showwallet')}}">
                         <i class='fas fa-wallet'></i>
@@ -37,6 +37,10 @@
                               <a class="dropdown-item" href="{{route('about')}}">
                                 <i class="fa fa-address-card"></i>
                                 About</a>
+
+                              <a class="dropdown-item" href="{{route('contact')}}">
+                                <i class='fas fa-address-book'></i>
+                                Contact</a>
                               
                             </div>
                           </div>
@@ -45,6 +49,15 @@
                        <a class="nav-item nav-link" href="{{route('showcart')}}">
                         <i class="fas fa-shopping-cart"></i>
                         Cart[{{$cartCount}}]</a>
+
+                        <a class="nav-item nav-link" href="#">
+                        <i class='fas fa-map-marker-alt'></i>
+                        
+                        @if ($currentinfo)
+                        {{$currentinfo->regionName}},
+                        {{$currentinfo->countryName}}
+                            
+                        @endif</a>
                        
 
                        @if (Route::has('login'))

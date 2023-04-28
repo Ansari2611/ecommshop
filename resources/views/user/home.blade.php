@@ -18,6 +18,10 @@
 	<!-- New Arrivals section start -->
 
     @include('user.content')
+
+
+    
+    
     
    
    	<!-- New Arrivals section end -->

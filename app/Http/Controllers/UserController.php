@@ -10,17 +10,38 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Wallet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Stevebauman\Location\Facades\Location;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(6);
-        return view('user.home', compact('products'));
+
+        $search=$request['search'] ?? "";
+        if($search!=""){
+            $products=Product::where('productname','LIKE',"%$search%")->paginate(6);
+
+        }else{
+            
+            $products = Product::paginate(6);
+        }
+
+        $data = Product::orderBy('created_at', 'desc')->take(2)->get();
+
+
+
+
+        // $ip=$request->ip();
+        $ip='103.216.82.153';
+        $currentinfo = Location::get($ip);
+
+
+        return view('user.home', compact('products','data','currentinfo','search'));
     }
 
     public function addcart(Request $request, $id)
@@ -47,10 +68,12 @@ class UserController extends Controller
         $cart = Cart::where('email', $user->email)->get();
 
 
+        $ip='103.216.82.153';
+        $currentinfo = Location::get($ip);
 
         $count = Cart::where('email', $user->email)->count();
 
-        return view('user.showcart', ['cart' => $cart, 'count' => $count]);
+        return view('user.showcart', ['cart' => $cart, 'count' => $count,'currentinfo'=>$currentinfo]);
     }
 
 
@@ -179,7 +202,9 @@ class UserController extends Controller
 
     public function contact()
     {
-        return view('user.contact');
+        $ip='103.216.82.153';
+        $currentinfo = Location::get($ip);
+        return view('user.contact',compact('currentinfo'));
     }
 
     public function contactus(Request $request)
@@ -243,6 +268,7 @@ class UserController extends Controller
         $cancelledOrder->delete(); // Delete order item from database
 
         // Add cancelled amount back to user's wallet balance
+        
         $user_id = Auth::id();
         $wallet = Wallet::where('user_id', $user_id)->firstOrFail();
         $wallet->amount += $cancelledAmount;

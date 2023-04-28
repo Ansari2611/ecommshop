@@ -112,7 +112,9 @@ span{
               </li>
 
               <li class="nav-item active">
-                <a class="nav-link" href="{{route('myorders')}}" style="margin-top:10px">My Orders</a>
+                <a class="nav-link" href="{{route('myorders')}}" style="margin-top:10px">
+                  <i class='fas fa-shopping-bag'></i>
+                  My Orders</a>
               </li>
 
             @if (Route::has('login'))
@@ -192,3 +194,4 @@ span{
   </section>
 </body>
 </html>
+
