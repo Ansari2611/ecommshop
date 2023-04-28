@@ -5,6 +5,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     @include('admin.css')
+
+    <style>
+      #table-row:hover{
+        background-color: white;
+        color:black;
+      }
+    </style>
   </head>
   <body>
     <div class="container-scroller">
@@ -55,7 +62,7 @@
                 </tr>
 
                 @foreach($data as $product)
-                <tr   style="border:2px Solid White">
+                <tr   style="border:2px Solid White; " id="table-row">
                     <td style="padding:20px">{{$product->productname}}</td>
                     <td style="padding:20px">₹{{$product->price}}</td>
                     <td style="padding:20px">{{$product->description}}</td>

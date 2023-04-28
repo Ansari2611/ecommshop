@@ -6,7 +6,7 @@
 <div class="layout_padding collection_section">
     <div class="container">
         <h1 class="new_text"><strong>New  Collection</strong></h1>
-        <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+        <p class="consectetur_text">Our new arrivals feature a range of styles to suit your needs, from athletic sneakers to elegant booties. Our collection includes classic pumps, modern loafers, and trendy sandals, each crafted with attention to detail and quality materials.</p>
         @foreach ($data as $data)
             
         
@@ -48,15 +48,17 @@
 <div class="collection_section layout_padding">
     <div class="container">
         <h1 class="new_text" id="newarrival"><strong>New Arrivals Products</strong></h1>
-        <p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+        <p class="consectetur_text">Introducing our latest collection of shoes, designed to keep you stylish and comfortable.</p>
 
         <form action="">
             @csrf
 
-            <div class="form-group">
+            <div class="form-group offset-8">
               
               <input type="search" name="search" id="" class=" text-center" placeholder="Search Product"  style="width: 200px; " value="{{$search}}">
-              <button class="btn btn-primary">Search</button>
+              <button class="btn btn-primary ml-2">
+                <i class="fa fa-search"></i>
+              </button>
               
             </div>
     

@@ -35,7 +35,7 @@
     @include('user.footer')
 
 	<!-- section footer end -->
-	<div class="copyright">2019 All Rights Reserved. <a href="https://html.design">Free html  Templates</a></div>
+	<div class="copyright">2019 All Rights Reserved. <a href="https://html.design">Ansari Md Arman</a></div>
 
 
       <!-- Javascript files-->
